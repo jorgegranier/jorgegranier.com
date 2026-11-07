@@ -1,0 +1,13 @@
+from pathlib import Path
+p=Path('/workspace/granierphelps-site');f=p/'create.py';s=f.read_text();marker="html+=section('ventures'"
+pos=s.index(marker)
+# Insert music before ventures, avoiding unsupported blanket claims.
+insert="""music=card('Fania / Concord / Sony Music','Music-catalog storytelling and partnerships: announced executive producer and co-concept originator for <i>Sangre Nueva</i> with Sony Music Latin, Fania and CTMOBS (2018); development collaboration with Concord on Fania’s history (2019).','Historias y alianzas basadas en catálogos musicales: productor ejecutivo anunciado y coautor del concepto de <i>Sangre Nueva</i> con Sony Music Latin, Fania y CTMOBS (2018); colaboración con Concord para desarrollar la historia de Fania (2019).')
+music+=card('Sonográfica / The Orchard','Reorganized Sonográfica’s music-catalog business and negotiated its distribution with The Orchard — connecting legacy repertoire with digital opportunities.','Reorganicé el negocio del catálogo musical de Sonográfica y negocié su distribución con The Orchard, conectando repertorios históricos con oportunidades digitales.')
+music+=card('Artist-led IP / Historias de artistas','<i>Nicky Jam: El Ganador</i> — co-executive / associate producer; negotiated music rights as part of the series deal. At Rubicon, artist-led screen development includes the announced collaboration with Eladio Carrión.','<i>Nicky Jam: El Ganador</i> — coproductor ejecutivo / productor asociado; negocié derechos musicales como parte del acuerdo de la serie. En Rubicon, el desarrollo audiovisual con artistas incluye la colaboración anunciada con Eladio Carrión.')
+html+=section('music','Music / Catalogs, artists & growth','Música / Catálogos, artistas y crecimiento','<h2>'+bi('Music is part of the business.','La música es parte del negocio.')+'</h2><p>'+bi('Catalog strategy, distribution, artist-led storytelling and creative partnerships — with the operating experience to help music businesses grow.','Estrategia de catálogos, distribución, historias de artistas y alianzas creativas, con experiencia operativa para impulsar el crecimiento de empresas musicales.')+'</p><div class="cards ventures">'+music+'</div><a class="text-link" href="https://deadline.com/2019/10/fania-records-scripted-project-sherry-marsh-concord-film-tv-1202752840/">'+bi('Read: Fania / Concord collaboration ↗','Leer: colaboración Fania / Concord ↗')+'</a>')
+"""
+s=s[:pos]+insert+s[pos:]
+s=s.replace('to opportunities across media, tech and consumer.','to opportunities across music, media, tech and consumer.').replace('en medios, tecnología y negocios de consumo.','en música, medios, tecnología y negocios de consumo.')
+s=s.replace('Leadership, content','Music, leadership, content')
+f.write_text(s)
